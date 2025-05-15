@@ -8,5 +8,5 @@
 function getInput(controls) {
     controls
         // Render a Link Input
-        .link('link', { isRequired: true, defaultValue: "https://www.omkar.cloud/" })
+        .link('link', { isRequired: true, defaultValue: "https://www.google.com/maps/search/" })
 }

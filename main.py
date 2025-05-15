@@ -1,4 +1,4 @@
-from src.scrape_heading_task import scrape_heading_task
+from src.scrape_google_maps import scrape_google_maps
      
 if __name__ == "__main__":
-    scrape_heading_task({"link":"https://www.omkar.cloud/"})
+    scrape_google_maps({"link":"https://www.google.com/maps/search/pagi+sore/"})

@@ -1,2 +1,8 @@
+bota
 botasaurus
-botasaurus-server
+botasaurus-api 
+botasaurus-requests 
+botasaurus-driver 
+botasaurus-proxy-authentication 
+botasaurus-server 
+botasaurus-humancursor
