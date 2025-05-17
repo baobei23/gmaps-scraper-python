@@ -4,14 +4,17 @@ from botasaurus.lang import Lang
 import json
 
 def extract_title(html):
-    raw_data = json.loads(html.split(";window.APP_INITIALIZATION_STATE=")[1].split(";window.APP_FLAGS")[0])[3][6]
-    raw_data.startswith(")]}'")
-    cleaned = raw_data[5:]
-    parsed_data = json.loads(cleaned)
+    try:
+        raw_data = json.loads(html.split(";window.APP_INITIALIZATION_STATE=")[1].split(";window.APP_FLAGS")[0])[3][6]
+        raw_data.startswith(")]}'")
+        cleaned = raw_data[5:]
+        parsed_data = json.loads(cleaned)
 
-    nama = parsed_data[6][11]
-    alamat = parsed_data[6][39]
-    return(nama, alamat)
+        nama = parsed_data[6][11]
+        alamat = parsed_data[6][39]
+        return(nama, alamat)
+    except (IndexError, KeyError, ValueError, TypeError):
+        return None, None
 
 @request(
     parallel=5,
