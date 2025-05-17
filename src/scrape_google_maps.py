@@ -24,6 +24,7 @@ def extract_title(html):
     parallel=5,
     async_queue=True,
     max_retry=5,
+    output=None
 )
 def scrape_place_title(request: Request, link, metadata):
     cookies = metadata["cookies"]
@@ -45,10 +46,11 @@ def has_reached_end(driver):
 def extract_links(driver):
     return driver.get_all_links('[role="feed"] > div > div > a')
 
-@browser(headless=False,
+@browser(headless=True,
          block_images_and_css=True,
          lang=Lang.Indonesian,
-         wait_for_complete_page_load=False
+         wait_for_complete_page_load=False,
+         output=None
          )
 def scrape_google_maps(driver: Driver, data):
     url = data['link']
