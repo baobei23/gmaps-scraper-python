@@ -12,9 +12,13 @@ def extract_title(html):
 
         nama = parsed_data[6][11]
         alamat = parsed_data[6][39]
-        return(nama, alamat)
+        telepon = parsed_data[6][178][0][3]
+        kategori = parsed_data[6][13]
+        pemilik = parsed_data[6][57][1]
+
+        return(nama, alamat, telepon, kategori, pemilik)
     except (IndexError, KeyError, ValueError, TypeError):
-        return None, None
+        return None, None, None, None, None
 
 @request(
     parallel=5,
@@ -24,11 +28,14 @@ def extract_title(html):
 def scrape_place_title(request: Request, link, metadata):
     cookies = metadata["cookies"]
     html = request.get(link, cookies=cookies, timeout=12).text
-    nama, alamat = extract_title(html)
+    nama, alamat, telepon, kategori, pemilik = extract_title(html)
     print(nama)
     return {
         "nama": nama,
         "alamat": alamat,
+        "telepon": telepon,
+        "kategori": kategori,
+        "pemilik": pemilik,
         "link": link
         }
 
