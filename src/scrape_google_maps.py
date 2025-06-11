@@ -28,6 +28,7 @@ def extract_title(html):
 )
 def scrape_place_title(request: Request, link, metadata):
     cookies = metadata["cookies"]
+    query = metadata.get("query")
     html = request.get(link, cookies=cookies, timeout=12).text
     nama, alamat, telepon, kategori, pemilik = extract_title(html)
     print(nama)
@@ -37,7 +38,8 @@ def scrape_place_title(request: Request, link, metadata):
         "telepon": telepon,
         "kategori": kategori,
         "pemilik": pemilik,
-        "link": link
+        "link": link,
+        "query": query,
         }
 
 def has_reached_end(driver):
@@ -54,6 +56,7 @@ def extract_links(driver):
          )
 def scrape_google_maps(driver: Driver, data):
     url = data['link']
+    query = data.get('query')
     driver.google_get(url, accept_google_cookies=True)  # accepts google cookies popup
 
     scrape_place_obj: AsyncQueueResult = scrape_place_title()  # initialize the async queue for scraping places
@@ -61,7 +64,7 @@ def scrape_google_maps(driver: Driver, data):
 
     while True:
         links = extract_links(driver)  # get the links to places
-        scrape_place_obj.put(links, metadata={"cookies": cookies})  # add the links to the async queue for scraping
+        scrape_place_obj.put(links, metadata={"cookies": cookies, "query": query})  # add the links to the async queue for scraping
 
         print("scrolling")
         driver.scroll_to_bottom('[role="feed"]')  # scroll to the bottom of the feed

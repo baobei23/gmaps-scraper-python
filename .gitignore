@@ -33,3 +33,4 @@ db.sqlite3
 **/.DS_Store
 task_results/
 node_modules/
+.erb
