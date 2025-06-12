@@ -41,5 +41,6 @@ Server.add_scraper(
     scrape_google_maps,
     create_all_task=True,
     split_task=split_task,
-    get_task_name=get_task_name
+    get_task_name=get_task_name,
+    remove_duplicates_by='link',
 )

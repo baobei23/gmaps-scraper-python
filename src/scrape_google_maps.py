@@ -169,7 +169,7 @@ def has_reached_end(driver):
 def extract_links(driver):
     return driver.get_all_links('[role="feed"] > div > div > a')
 
-@browser(headless=False,
+@browser(headless=True,
          block_images_and_css=True,
          lang=Lang.Indonesian,
          output=None
