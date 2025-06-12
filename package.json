@@ -1,0 +1,19 @@
+{
+  "name": "gmaps-scraper-python",
+  "version": "1.0.0",
+  "description": "Google Maps scraper using got-scraping",
+  "main": "src/scraper_node.js",
+  "type": "module",
+  "scripts": {
+    "install-deps": "npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "got-scraping": "^3.2.14"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
